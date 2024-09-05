@@ -14,16 +14,16 @@ from concurrent.futures import ThreadPoolExecutor
 from savedex import schema_venum
 import uuid
 
-# Setup env variables
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "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")
 
 # schema_details
 schema_details = schema_venum()
 
-# Set Streamlit page configuration
+
 st.set_page_config(page_title="AI SQL", layout="wide")
 
-# Initialize session states
+
 if "generated" not in st.session_state:
     st.session_state["generated"] = []
 if "past" not in st.session_state:
@@ -70,7 +70,7 @@ def new_chat():
     st.session_state["sql_statement"] = []
     st.session_state.entity_memory.buffer.clear()
 
-# Create an OpenAI instance
+
 llm = LangchainOpenAI(temperature=0, openai_api_key=OPENAI_API_KEY, model="gpt-3.5-turbo-instruct", verbose=False)
 
 if "entity_memory" not in st.session_state:
@@ -124,7 +124,6 @@ with st.sidebar:
 # Store the sidebar selection in the session state
 st.session_state.sidebar_selection = selected
 
-# Title
 s = f"<center><span style='font-size:55px; color:rgb(180,0,60)'>AI SQL </span><span style='font-size:55px; color:rgb(255,255,255)'>Assistant</span></center>"
 st.markdown(s, unsafe_allow_html=True)
 st.divider()
